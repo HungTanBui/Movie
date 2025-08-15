@@ -12,6 +12,8 @@ function MovieDetail() {
 
   const [movie, setMovie] = useState({});
 
+  const [credits, setCredits] = useState({});
+
   console.log(movieId);
 
   // thông qua API lấy movie detail
@@ -24,10 +26,19 @@ function MovieDetail() {
     console.log(respone.data);
   };
 
+  const fetchCredits = async () => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=a10ee5569194b352bcca20840b7f8a32`
+    );
+
+    setCredits(response.data);
+  };
+
   // chạy khi load page
 
   useEffect(() => {
     fetchMovieDetail();
+    fetchCredits();
   }, [movieId]);
 
   return (
@@ -87,6 +98,28 @@ function MovieDetail() {
               <div className="info">
                 <span className="label">Runtime: </span>
                 <span className="value">{movie.runtime}</span>
+              </div>
+            </div>
+            <div className="box">
+              <div className="info">
+                <div className="label">Director: </div>
+                <div className="value">
+                  {
+                    credits.crew?.filter((item) => item.job === "Director")[0]
+                      .name
+                  }
+                </div>
+              </div>
+            </div>
+            <div className="box">
+              <div className="info">
+                <div className="label">Writer: </div>
+                <div className="value">
+                  {
+                    credits.crew?.filter((item) => item.job === "Writer")[0]
+                      .name
+                  }
+                </div>
               </div>
             </div>
           </div>

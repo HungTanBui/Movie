@@ -79,6 +79,20 @@
           display: flex;
           gap: 20px;
           padding: 20px 0;
+          flex-direction: row;
+        }
+
+        .info{
+          display: flex;
+          gap: 10px;
+        }
+
+        .label{
+          margin-bottom: 8px;
+        }
+
+        .value{
+          opacity: 0.5;
         }
       }
     }
