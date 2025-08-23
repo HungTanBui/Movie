@@ -104,10 +104,9 @@ function MovieDetail() {
               <div className="info">
                 <div className="label">Director: </div>
                 <div className="value">
-                  {
-                    credits.crew?.filter((item) => item.job === "Director")[0]
-                      .name
-                  }
+                  {credits.crew?.filter((item) => item.job === "Writer")[0] &&
+                    credits.crew?.filter((item) => item.job === "Writer")[0]
+                      .name}
                 </div>
               </div>
             </div>
@@ -115,10 +114,9 @@ function MovieDetail() {
               <div className="info">
                 <div className="label">Writer: </div>
                 <div className="value">
-                  {
+                  {credits.crew?.filter((item) => item.job === "Writer")[0] &&
                     credits.crew?.filter((item) => item.job === "Writer")[0]
-                      .name
-                  }
+                      .name}
                 </div>
               </div>
             </div>

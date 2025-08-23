@@ -1,0 +1,22 @@
+// giống như function ở JS
+// có thể tái sử dụng nhiều lần
+// cho phép truyền tham số
+// cho phép tạo ra biến
+
+
+// background 
+// trong dự án có nhiều thằng bg màu đỏ
+// tái sử dụng lại cái màu đỏ này
+
+
+@mixin bg-red{
+    background-color: red;
+}
+
+@mixin border-radius {
+    border-radius: 12px;
+}
+
+@mixin bg-linear {
+  background-image: linear-gradient(98.37deg, #f89e00 0.99%, #da2f68 100%);
+}

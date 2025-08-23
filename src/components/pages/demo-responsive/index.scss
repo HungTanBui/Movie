@@ -1,0 +1,17 @@
+@import "/src/style/mixin/responsive.scss";
+
+.demo {
+  h1 {
+    background-color: red;
+
+    @include tablet{
+        background-color: green;
+    }
+
+    @include sp{
+        background-color: blue;
+    }
+  }
+}
+
+
