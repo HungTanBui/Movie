@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import "./index.scss";
 import Tags from "../../tags";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import CastCard from "../../cast-card";
+import VideoCard from "../../video-card";
+
 
 function MovieDetail() {
   // lấy cái slug ở trên url
@@ -14,6 +17,8 @@ function MovieDetail() {
 
   const [credits, setCredits] = useState({});
 
+  const [videos, setVideos] = useState({});
+
   console.log(movieId);
 
   // thông qua API lấy movie detail
@@ -23,7 +28,13 @@ function MovieDetail() {
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=a10ee5569194b352bcca20840b7f8a32`
     );
     setMovie(respone.data);
-    console.log(respone.data);
+  };
+
+  const fetchVideo = async () => {
+    const respone = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=a10ee5569194b352bcca20840b7f8a32`
+    );
+    setVideos(respone.data);
   };
 
   const fetchCredits = async () => {
@@ -32,6 +43,7 @@ function MovieDetail() {
     );
 
     setCredits(response.data);
+    console.log(response.data);
   };
 
   // chạy khi load page
@@ -39,6 +51,7 @@ function MovieDetail() {
   useEffect(() => {
     fetchMovieDetail();
     fetchCredits();
+    fetchVideo();
   }, [movieId]);
 
   return (
@@ -121,6 +134,33 @@ function MovieDetail() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="overlay"></div>
+      </div>
+
+      <div className="castCard-section">
+        <h3 className="castCard-section__title">Top Cast</h3>
+        <div className="castCard-section__wrapper" style={{ display: "flex", gap: 60 }}>
+          {credits.cast?.slice(0, 6).map((item) => (
+            <CastCard
+              image={item.profile_path}
+              name={item.name}
+              subname={item.character}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="video-section">
+        <h3 className="video-section__title">Official Videos</h3>
+        <div className="video-section__list">
+          {videos.results?.slice(0, 4)?.map((item) => (
+            <VideoCard 
+              id={item.key} 
+              name={item.name} 
+              url={`https://www.youtube.com/watch?v=${item.key}`}
+            />
+          ))}
         </div>
       </div>
     </div>

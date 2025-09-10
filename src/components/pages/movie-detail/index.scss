@@ -1,6 +1,7 @@
 @import "/src/style/mixin/demo.scss";
 
 .movie-detail {
+
   .banner {
     position: relative;
 
@@ -114,4 +115,45 @@
       bottom: 0;
     }
   }
+
+
+  .castCard-section{
+    &__title{
+      text-align: center;
+      font-weight: 1000;
+      font-size: 45px;
+      color: #fff;
+      margin-bottom: 50px;
+    }
+
+    &__wrapper{
+      max-width: 1200px;
+      margin: 20px auto;
+      justify-content: center;
+    }
+  }
+  
+
+
+  .video-section{
+    max-width: 1200px;
+    margin: 50px auto;
+    &__title{
+      text-align: center;
+      font-size: 40px;
+      font-weight: 1000;
+      color: #fff;
+      margin-bottom: 50px;
+    }
+
+    &__list{
+      display: flex;
+      gap: 10px;
+      justify-content: start;
+      align-items: center;
+    }
+
+  }
+
+  
 }
